@@ -1,22 +1,30 @@
 import logo from '../../images/logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import { fetchStockList } from '../../apiCalls';
 
-function App() {
+const App = () => {
+  const [stockList, setStockList] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [stockListError, setStockListError] = useState('')
+
+  useEffect(() => {
+    updateStockList()
+    setIsLoading(false)
+  }, [])
+
+  const updateStockList = () => {
+    setIsLoading(true)
+    fetchStockList()
+      .then(data => setStockList(data))
+      .catch(error => setStockListError(error.message))
+    
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+
       </header>
     </div>
   );
