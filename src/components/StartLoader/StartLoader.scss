@@ -1,4 +1,16 @@
-.capita-logo {
-  color: white;
-  height: 50px;
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 10em;
 }
+
+.capita-logo {
+  height: 4em;
+}
+
+.capita-title {
+  font-size: 2.5em;
+  font-family: 'Cormorant', serif;
+}
+

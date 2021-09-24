@@ -5,10 +5,10 @@ import './StartLoader.scss';
 const StartLoader = (props) => {
 
   return (
-    <header className="loader-container">
+    <article className="loader-container">
       <img className="capita-logo" alt="Capita logo" src={capitaLogo}></img>
       <h1 className="capita-title">Capita</h1>
-    </header>
+    </article>
   );  
 }
 
