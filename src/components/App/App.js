@@ -15,15 +15,15 @@ const App = () => {
   const [stockListError, setStockListError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
-  useEffect(() => {
+  useEffect( async () => {
     setIsLoading(true)
-    updateStockList()
-    setTimeout(() => setIsLoading(false), 3000)
+    await updateStockList()
+    setIsLoading(false)
   }, [])
 
-  const updateStockList = () => {
-      fetchStockList()
-      .then(data => setStockList(data.slice(0, 10000)))
+  const updateStockList = async () => {
+      await fetchStockList()
+      .then(data => setStockList(data))
       .catch(error => setStockListError(error.message))
   }
 
@@ -34,7 +34,12 @@ const App = () => {
           <Route exact path="/"
             render={() =>
               <>
-              { isLoading ? <StartLoader /> : <Search stocks={stockList}/>}
+              { isLoading ? <StartLoader /> : 
+              <section className="search-page">
+                <p className="search-title">Find Stocks</p>
+                <Search stocks={stockList} />
+              </section>  
+              }
               </>
             }
           />
