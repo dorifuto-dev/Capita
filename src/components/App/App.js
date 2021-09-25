@@ -74,7 +74,6 @@ const App = () => {
           <Route exact path={"/stock/:company"}
             render={({ match }) =>
               <>
-                {stockDetail === [] && updateStockDetail(match.params.company)}
                 <Stock 
                   updateStockDetail={updateStockDetail}
                   stockDetail={stockDetail}
