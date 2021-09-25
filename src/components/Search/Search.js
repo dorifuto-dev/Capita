@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Search.scss';
 
 const Search = ({stocks}) => {
@@ -6,8 +7,10 @@ const Search = ({stocks}) => {
 
   return (
     <form className="search-stocks">
-      <input className="search-input" type="text"></input>
-      
+      <input className="search-input" type="text" value={query} placeholder="Search by stock or ticker name (ex. Apple or AAPL)"></input>
+      <Link to={`/${query}`}>
+        <button className="search-submit">GO</button>
+      </Link>
     </form>
   )
 }
