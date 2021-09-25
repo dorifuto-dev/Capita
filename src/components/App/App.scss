@@ -34,6 +34,19 @@ h1 {
   color: white;
 }
 
+.navigation {
+  display: flex;
+  flex-direction: row;
+  width: 70vw;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 1em;
+}
+
+.navbar-img {
+  height: 1.5em;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

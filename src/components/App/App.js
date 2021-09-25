@@ -2,8 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
 import { fetchStockList } from '../../apiCalls';
+import { Switch, Route, NavLink } from 'react-router-dom';
 import StartLoader from '../StartLoader/StartLoader';
 import Search from '../Search/Search';
+import heartIcon from '../../images/heart-active-icon.svg';
+import searchIcon from '../../images/search-active-icon.svg';
+import chartIcon from '../../images/chart-active.svg';
 
 const App = () => {
   const [stockList, setStockList] = useState([])
@@ -25,7 +29,29 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        { isLoading ? <StartLoader /> : <Search />}
+        <Switch>
+          <Route exact path="/"
+            render={() =>
+              <>
+              { isLoading ? <StartLoader /> : <Search stocks={stockList}/>}
+              </>
+            }
+          />
+        </Switch>
+        { !isLoading &&
+          <nav className="navigation">
+            <NavLink to="/explore">
+              <img className="chart-icon navbar-img" src={chartIcon}></img>
+            </NavLink>
+            <NavLink to="/">
+              <img className="search-icon navbar-img" src={searchIcon}></img>
+            </NavLink>
+            <NavLink to="/favorites">
+              <img className="heart-icon navbar-img" src={heartIcon}></img>
+            </NavLink>
+          </nav>
+        }
+       
       </header>
     </div>
   );
