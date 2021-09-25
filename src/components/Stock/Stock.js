@@ -15,3 +15,5 @@ const Stock = ({ updateStockDetail, stockDetail, query }) => {
 }
 
 export default Stock;
+
+//MAY CHANGE NAME TO DETAIL, CHART, etc.
