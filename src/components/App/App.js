@@ -32,6 +32,8 @@ const App = () => {
 
   const updateStockDetail = async (company) => {
     await fetchStockDetail(company)
+    // Slicing 135 objects from data to show history of a stock by
+    // 15-minute increments for a week.
       .then(data => cleanStockDetailData(data.slice(0, 135)))
       .then(data => setStockDetail(data))
       .catch(error => console.log(error.message))
@@ -74,7 +76,6 @@ const App = () => {
           <Route exact path={"/stock/:company"}
             render={({ match }) =>
               <>
-                
                 <Stock 
                   updateStockDetail={updateStockDetail}
                   stockDetail={stockDetail}
@@ -121,8 +122,7 @@ const App = () => {
               </img>
             </NavLink>
           </nav>
-        }
-       
+        } 
       </header>
     </div>
   );
