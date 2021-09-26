@@ -30,11 +30,9 @@ const App = () => {
   }
 
   const updateStockDetail = async (company) => {
-    setIsLoading(true)
     await fetchStockDetail(company)
       .then(data => setStockDetail(data))
       .catch(error => console.log(error.message))
-    setTimeout(() => setIsLoading(false), 1500)
   }
 
   const clearStockDetail = () => {
@@ -74,11 +72,13 @@ const App = () => {
           <Route exact path={"/stock/:company"}
             render={({ match }) =>
               <>
+                
                 <Stock 
                   updateStockDetail={updateStockDetail}
                   stockDetail={stockDetail}
                   query={match.params.company}
                 />
+                
               </>
             }
           /> 
