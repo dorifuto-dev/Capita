@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { fetchFortuneList, fetchStockDetail } from '../../apiCalls';
+import { cleanStockDetailData } from '../../dataCleaning';
 import { Switch, Route, NavLink } from 'react-router-dom';
 import StartLoader from '../StartLoader/StartLoader';
 import Search from '../Search/Search';
@@ -20,17 +21,18 @@ const App = () => {
     updateFortuneList()
   }, [])
 
-  // CURRENTLY UNUSED hook - stockList ^
+  // CURRENTLY UNUSED hook - fortuneList ^
   const updateFortuneList = async () => {
     setIsLoading(true)
     await fetchFortuneList()
-      .then(data => setFortuneList(data.slice()))
+      .then(data => setFortuneList(data))
       .catch(error => setFortuneListError(error.message))
     setTimeout(() => setIsLoading(false), 2500)
   }
 
   const updateStockDetail = async (company) => {
     await fetchStockDetail(company)
+      .then(data => cleanStockDetailData(data.slice(0, 135)))
       .then(data => setStockDetail(data))
       .catch(error => console.log(error.message))
   }
