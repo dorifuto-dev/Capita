@@ -1,4 +1,5 @@
 const dayjs = require('dayjs');
+const thousands = require('thousands');
 
 export const cleanStockDetailData = (stockDetailData) => {
   return stockDetailData.map(history => {
@@ -6,12 +7,12 @@ export const cleanStockDetailData = (stockDetailData) => {
     const time = history.date.split(' ')[1]
     return {
       date: dayjs(date).format('MMM DD, YYYY'),
-      time: dayjs(time).format('h:m'),
-      open: `$${history.open.toFixed(2)}`,
-      close: `$${history.close.toFixed(2)}`,
-      low: `$${history.low.toFixed(2)}`,
-      high: `$${history.high.toFixed(2)}`,
-      volume: String.format('{0:n0}', history.volume)
+      time: dayjs(history.date).format('h:mm A'),
+      open: `$${thousands(history.open.toFixed(2))}`,
+      close: `$${thousands(history.close.toFixed(2))}`,
+      low: `$${thousands(history.low.toFixed(2))}`,
+      high: `$${thousands(history.high.toFixed(2))}`,
+      volume: thousands(history.volume)
     }
   })
 }
