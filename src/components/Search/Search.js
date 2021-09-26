@@ -15,7 +15,7 @@ const Search = ({ stocks }) => {
       <input 
         className="search-input" 
         type="text"
-        placeholder="Search by stock or ticker name (ex. Apple or AAPL)"
+        placeholder="Search by ticker name (ex. AAPL for Apple)"
         onChange={event => handleFormChange(event)}
         value={query} required>
       </input>
