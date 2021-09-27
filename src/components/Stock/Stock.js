@@ -29,7 +29,7 @@ const Stock = ({ updateStockDetail, stockDetail, query }) => {
           />
           <h1 className="stock-title">{query}</h1>
           <p className="last-updated">{`Last updated on ${stockDetail[0].dateTime}`}</p>
-          <p className="title">{`Latest Price: ${dollarizeNumber(stockDetail[0].close)}`}</p>
+          <p className="latest-price">{`Latest Price: ${dollarizeNumber(stockDetail[0].close)}`}</p>
           
         </div>
       }
