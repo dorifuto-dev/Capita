@@ -7,7 +7,7 @@ export const cleanStockDetailData = (stockDetailData) => {
     return {
       date: dayjs(date).format('MMM DD, YYYY'),
       timeStart: dayjs(history.date).format('h:mm A'),
-      dateTime: dayjs(history.date).format('M/DD/YY h:mm A'),
+      dateTime: dayjs(history.date).format('MMM DD, YYYY h:mm A'),
       timeEnd: addTimeIncrement(history.date, 15),
       open: history.open,
       close: history.close,
@@ -23,5 +23,5 @@ const addTimeIncrement = (time, increment) => {
 }
 
 export const dollarizeNumber = (number) => {
-  return `$${number.toFixed(2)}`
+  return `$${thousands(number.toFixed(2))}`
 }
