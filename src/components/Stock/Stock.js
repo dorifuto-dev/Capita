@@ -5,7 +5,7 @@ import Loader from 'react-loader-spinner';
 import './Stock.scss';
 const thousands = require('thousands');
 
-const Stock = ({ updateStockDetail, stockDetail, ticker }) => {
+const Stock = ({ updateSavedStocks, updateStockDetail, stockDetail, ticker, company }) => {
   const [stockData, setStockData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
@@ -24,13 +24,16 @@ const Stock = ({ updateStockDetail, stockDetail, ticker }) => {
     <div>
       { (isLoading || !stockDetail) ? <Loader className="three-dots" type="ThreeDots" color="#ffffff" height="50" /> :
         <div>
+         
+          <section className="stock-info">
+            <h1 className="ticker-title">{ticker}</h1>
+            <h1 className="company-title">{company}</h1>
+            <p className="last-updated">{`Last updated on ${stockDetail[0].dateTime}`}</p>
+            <p className="latest-price">{`Latest Price: ${dollarizeNumber(stockDetail[0].close)}`}</p>
+          </section>
           <StockChart 
             stockDetail={stockDetail}
           />
-          <h1 className="stock-title">{ticker}</h1>
-          <p className="last-updated">{`Last updated on ${stockDetail[0].dateTime}`}</p>
-          <p className="latest-price">{`Latest Price: ${dollarizeNumber(stockDetail[0].close)}`}</p>
-          
         </div>
       }
     </div>
