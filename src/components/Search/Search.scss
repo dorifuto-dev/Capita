@@ -2,9 +2,16 @@
   width: 75vw;
   height: 2.5em;
   text-align: center;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
+  border-radius: 15px;
   border: 0px;
+}
+
+.search-exchange {
+  border-radius: 15px 0px 0px 15px;
+  border: 0px;
+  width: 50vw;
+  height: 2.5em;
+  margin-top: 1em;
 }
 
 .search-submit {
