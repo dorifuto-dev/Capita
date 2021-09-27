@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Chart, registerables } from 'chart.js';
-import './StockChart.css';
+import './StockChart.scss';
 
 Chart.defaults.scale.display = false;
 Chart.defaults.maintainAspectRatio = false;
@@ -29,7 +29,7 @@ const StockChart = ({stockDetail}) => {
     },
     options: {
       interaction: {
-        mode: 'x'
+        mode: 'point'
       },
       plugins: {
         legend: {
