@@ -20,9 +20,14 @@ const Search = ({ stocks }) => {
 
   const getSearchResults = async (event, query, exchange) => {
     event.preventDefault()
-    await fetchSearchSuggestions(query, exchange)
-      .then(data => setSearchResults(data))
-      .catch(error => setSearchError(error.message))
+    if (query && exchange) {
+      await fetchSearchSuggestions(query, exchange)
+        .then(data => setSearchResults(data))
+        .catch(error => setSearchError(error.message))
+    } else {
+      await setSearchError('Please fill out both fields.')
+      setTimeout(() => setSearchError(''), 3000)
+    }
   }
 
   return (
@@ -47,6 +52,7 @@ const Search = ({ stocks }) => {
         <option value="NASDAQ">NASDAQ</option>
       </select>
       <button className="search-submit" onClick={(event) => getSearchResults(event, query, exchange)}>GO</button>
+      { searchError && <p className="incomplete-form-error">{searchError}</p>}
       </div>
     </form>
   )
