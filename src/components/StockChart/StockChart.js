@@ -22,12 +22,15 @@ const StockChart = ({stockDetail}) => {
         {
           label: "Stock Price",
           data: stockDetail.map(detail => detail.close.toFixed(2)).reverse(),
-          borderColor: "#ffffff",
+          borderColor: "#00ffff",
           backgroundColor: "#ffffff"
         }
       ]
     },
     options: {
+      interaction: {
+        mode: 'x'
+      },
       plugins: {
         legend: {
           display: false
@@ -43,8 +46,8 @@ const StockChart = ({stockDetail}) => {
       },
       elements: {
         point: {
-          hitRadius: 10,
-          hoverRadius: 10,
+          hitRadius: 5,
+          hoverRadius: 5,
           radius: 0
         }
       }
