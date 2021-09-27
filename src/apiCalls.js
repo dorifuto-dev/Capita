@@ -30,7 +30,6 @@ export const fetchStockDetail = (company) => {
 
 export const fetchSearchSuggestions = (query, exchange) => {
   const url = `https://financialmodelingprep.com/api/v3/search-ticker?query=${query}&limit=20&exchange=${exchange}&apikey=1c2f080351d9a4329c6b22ef21dc46dc`
-  console.log(url)
   return fetch(url)
     .then(response => {
       if (response.ok) {
