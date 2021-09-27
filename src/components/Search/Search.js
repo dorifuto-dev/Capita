@@ -33,7 +33,14 @@ const Search = ({ stocks }) => {
 
   const createSearchResultLinks = (data) => {
     return data.map((result, index) => {
-      return (<Link to={`/stock/${result.symbol}`}><button className="stock-link">{result.name}</button></Link>)
+      return (
+        <Link to={`/stock/${result.symbol}&${result.name}`} key={result.symbol} className="link-stock">
+          <div className="stock-link">
+            <p className="stock-link-name">{result.name}</p>
+            <p className="stock-link-symbol">{result.symbol}</p>
+          </div>
+        </Link>
+      )
     })
   }
 
@@ -60,14 +67,16 @@ const Search = ({ stocks }) => {
           <option value="NASDAQ">NASDAQ</option>
         </select>
         <button className="search-submit" onClick={(event) => getSearchResults(event, query, exchange)}>GO</button>
-        { searchError && <p className="incomplete-form-error">{searchError}</p>}
         </div>
       </form>
-      { searchResults && <section className="search-results">{searchResults}</section>}
+      { (searchError || !searchResults) ? <p className="incomplete-form-error">{searchError}</p>:
+        <section className="search-results">{searchResults}</section>
+      }
     </section>
   )
 }
 
 export default Search;
 
-{/* <Link to={`/stock/${query.toUpperCase()}`}> */}
+/* <Link to={`/stock/${query.toUpperCase()}`}> */
+// { (!searchError && !searchResults) && <section className="daily-tip-container"><p className="daily-tip">Tip of the Day:</p> <p className="tip-text">Invest regularly a little bit at a time.</p></section>}
