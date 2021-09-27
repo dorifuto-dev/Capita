@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchFortuneList, fetchStockDetail } from '../../apiCalls';
+import { fetchStockDetail } from '../../apiCalls';
 import { cleanStockDetailData } from '../../dataCleaning';
 import { Switch, Route, NavLink } from 'react-router-dom';
 import StartLoader from '../StartLoader/StartLoader';
@@ -13,20 +13,15 @@ import './App.scss';
 const App = () => {
   const [fortuneList, setFortuneList] = useState([])
   const [stockDetail, setStockDetail] = useState(null)
-  const [fortuneListError, setFortuneListError] = useState('')
   const [stockDetailError, setStockDetailError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    updateFortuneList()
+    startApp()
   }, [])
 
-  // CURRENTLY UNUSED hook - fortuneList ^
-  const updateFortuneList = async () => {
+  const startApp = () => {
     setIsLoading(true)
-    await fetchFortuneList()
-      .then(data => setFortuneList(data))
-      .catch(error => setFortuneListError(error.message))
     setTimeout(() => setIsLoading(false), 2500)
   }
 
@@ -73,13 +68,14 @@ const App = () => {
               </>
             }
           /> 
-          <Route exact path={"/stock/:company"}
+          <Route exact path={"/stock/:ticker&:company"}
             render={({ match }) =>
               <>
                 <Stock 
                   updateStockDetail={updateStockDetail}
                   stockDetail={stockDetail}
-                  query={match.params.company}
+                  company={match.params.company}
+                  ticker={match.params.ticker}
                 />
                 
               </>
