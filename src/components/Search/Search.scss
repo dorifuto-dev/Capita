@@ -3,16 +3,37 @@
   height: 2.5em;
   text-align: center;
   border-radius: 15px;
-  border: 0px;
+  border: 0;
+  // border: 1px solid white;
+  color: white;
+  position: absolute;
+  background-color: #282D33;
+  top: 6.5em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+::placeholder {
+  color: white;
 }
 
 .search-exchange {
+  border: 0;
+  background-color: #282D33;
+  color: white;
   border-radius: 15px 0px 0px 15px;
-  border: 0px;
   width: 68vw;
   height: 2.5em;
   margin-top: 1.2em;
   text-align-last: center;
+  position: absolute;
+  top: 9em;
+  left: 10vw;
+
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .search-submit {
@@ -23,9 +44,43 @@
   border: 0px;
   background-color: green;
   color: #ffffff;
+  position: absolute;
+  top: 10.2em;
+  right: 10vw;
+  margin-left: auto;
+  margin-right: auto;
+  :hover {
+    filter: brightness(80%);
+  }
 }
 
 .incomplete-form-error {
   margin: 1em;
   font-size: 0.8em;
+}
+
+.search-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 62vh;
+  overflow-y: scroll;
+  position: absolute;
+  top: 11em;
+  left: 0;
+  right: 0;
+  margin: auto 0px auto 0px;
+}
+
+::-webkit-scrollbar {
+  
+}
+
+.stock-link {
+  width: 100vw;
+  height: 40px;
+  background-color: black;
+  color: white;
+  border-top: 1px solid #939799;
+  border-left: 0;
 }
