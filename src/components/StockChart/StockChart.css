@@ -1,5 +1,5 @@
 .chart-container {
-  height: 15em;
+  height: 20em;
   width: 90vw;
   position: absolute;
   top: 5em;
@@ -7,9 +7,16 @@
   left: 0;
   margin-left: auto;
   margin-right: auto;
+  opacity: 80%
 }
 
 .stock-chart {
   height: 100%;
   width: 100%;
+}
+
+@media screen and (min-width: 500px) {
+  .chart-container {
+    width: 100vw;
+  } 
 }
