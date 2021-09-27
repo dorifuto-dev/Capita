@@ -1,0 +1,30 @@
+@mixin positioned-absolute {
+  position: absolute;
+}
+
+@mixin positioned-absolute-x-axis-center {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.stock-title {
+  @include positioned-absolute-x-axis-center();
+  top: 1.5em;
+  font-size: 2.5em;
+}
+
+.last-updated {
+  @include positioned-absolute-x-axis-center();
+  top: 30em;
+  font-size: 0.8em;
+}
+
+.latest-price {
+  @include positioned-absolute-x-axis-center();
+  top: 21.5em;
+  font-size: 1.2em;
+  font-weight: 700;
+}

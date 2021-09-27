@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { fetchFortuneList, fetchStockDetail } from '../../apiCalls';
+import { cleanStockDetailData } from '../../dataCleaning';
 import { Switch, Route, NavLink } from 'react-router-dom';
 import StartLoader from '../StartLoader/StartLoader';
 import Search from '../Search/Search';
@@ -11,7 +12,7 @@ import './App.scss';
 
 const App = () => {
   const [fortuneList, setFortuneList] = useState([])
-  const [stockDetail, setStockDetail] = useState([])
+  const [stockDetail, setStockDetail] = useState(null)
   const [fortuneListError, setFortuneListError] = useState('')
   const [stockDetailError, setStockDetailError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -20,25 +21,26 @@ const App = () => {
     updateFortuneList()
   }, [])
 
-  // CURRENTLY UNUSED hook - stockList ^
+  // CURRENTLY UNUSED hook - fortuneList ^
   const updateFortuneList = async () => {
     setIsLoading(true)
     await fetchFortuneList()
-      .then(data => setFortuneList(data.slice()))
+      .then(data => setFortuneList(data))
       .catch(error => setFortuneListError(error.message))
     setTimeout(() => setIsLoading(false), 2500)
   }
 
   const updateStockDetail = async (company) => {
-    setIsLoading(true)
     await fetchStockDetail(company)
+    // Slicing 135 objects from data to show history of a stock by
+    // 15-minute increments for a week.
+      .then(data => cleanStockDetailData(data.slice(0, 135)))
       .then(data => setStockDetail(data))
-      .catch(error => console.log(error.message))
-    setTimeout(() => setIsLoading(false), 1500)
+      .catch(error => setStockDetailError(error.message))
   }
 
   const clearStockDetail = () => {
-    setStockDetail([])
+    setStockDetail(null)
   }
 
   return (
@@ -79,6 +81,7 @@ const App = () => {
                   stockDetail={stockDetail}
                   query={match.params.company}
                 />
+                
               </>
             }
           /> 
@@ -119,8 +122,7 @@ const App = () => {
               </img>
             </NavLink>
           </nav>
-        }
-       
+        } 
       </header>
     </div>
   );
