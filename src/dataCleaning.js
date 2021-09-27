@@ -6,7 +6,9 @@ export const cleanStockDetailData = (stockDetailData) => {
     const date = history.date.split(' ')[0]
     return {
       date: dayjs(date).format('MMM DD, YYYY'),
-      time: dayjs(history.date).format('h:mm A'),
+      timeStart: dayjs(history.date).format('h:mm A'),
+      dateTime: dayjs(history.date).format('M/DD/YY h:mm A'),
+      timeEnd: addTimeIncrement(history.date, 15),
       open: history.open,
       close: history.close,
       low: history.low,
@@ -14,6 +16,10 @@ export const cleanStockDetailData = (stockDetailData) => {
       volume: history.volume
     }
   })
+}
+
+const addTimeIncrement = (time, increment) => {
+  return dayjs(time).add(increment, 'minutes').format('h:mm A')
 }
 
 export const dollarizeNumber = (number) => {
