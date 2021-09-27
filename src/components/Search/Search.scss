@@ -54,8 +54,17 @@
   }
 }
 
+.daily-tip {
+  max-width: 80vw;
+}
+
 .incomplete-form-error {
-  margin: 1em;
+  position: absolute;
+  top: 185px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 0.8em;
 }
 
@@ -63,10 +72,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 62vh;
+  height: 63vh;
   overflow-y: scroll;
+  overflow-x: hidden;
   position: absolute;
-  top: 11em;
+  top: 200px;
   left: 0;
   right: 0;
   margin: auto 0px auto 0px;
@@ -76,11 +86,48 @@
   
 }
 
+.link-stock {
+  text-decoration: none;
+}
+
+.link-stock:hover {
+  background-color: green;
+}
+
 .stock-link {
   width: 100vw;
   height: 40px;
   background-color: black;
   color: white;
-  border-top: 1px solid #939799;
+  border-top: 1px solid #282D33;
+  border-bottom: 0;
   border-left: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  align-items: center;
+  font-size: 0.8em;
+}
+
+.stock-link:last-child {
+  border-bottom: 1px solid #282D33;
+}
+
+.stock-link:hover {
+  background-color: #282D33;
+}
+
+.stock-link-name, .stock-link-symbol {
+  position: absolute;
+}
+
+.stock-link-name {
+  left: 11vw;
+  margin-right: auto;
+}
+
+.stock-link-symbol {
+  left: 85vw;
+  margin-right: auto;
 }
