@@ -27,3 +27,18 @@ export const fetchStockDetail = (company) => {
       }
     })
 }
+
+export const fetchSearchSuggestions = (query, exchange) => {
+  const url = `https://financialmodelingprep.com/api/v3/search-ticker?query=${query}&limit=10&exchange=${exchange}&apikey=1c2f080351d9a4329c6b22ef21dc46dc`
+  console.log(url)
+  return fetch(url)
+    .then(response => {
+      if (response.ok) {
+        return response.json()
+      } else if (response.status === 404) {
+        throw new Error('404 Error - Search query not found. Please try your search again.')
+      } else if (response.status === 500) {
+        throw new Error('500 Error - Encountered server error. Please refresh or go back and try again')
+      }
+    })
+}
