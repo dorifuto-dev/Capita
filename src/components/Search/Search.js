@@ -1,22 +1,32 @@
 import React, { useState, useEffect } from 'react';
+import { fetchSearchSuggestions } from '../../apiCalls';
 import { Link } from 'react-router-dom';
 import './Search.scss';
 
 const Search = ({ stocks }) => {
   const [query, setQuery] = useState('')
   const [exchange, setExchange] = useState('')
+  const [searchResults, setSearchResults] = useState(null)
+  const [searchError, setSearchError] = useState('')
 
   const handleFormChange = (event) => {
     event.preventDefault()
     if (event.target.id === "exchangeSelect") {
       setExchange(event.target.value)
     } else {
-      setQuery(event.target.value)
+      setQuery(event.target.value.toUpperCase())
     }
   }
 
+  const getSearchResults = async (event, query, exchange) => {
+    event.preventDefault()
+    await fetchSearchSuggestions(query, exchange)
+      .then(data => setSearchResults(data))
+      .catch(error => setSearchError(error.message))
+  }
+
   return (
-    <form className="search-stocks" onChange={(event) => handleFormChange(event)}>
+    <form className="search-stocks">
       <input 
         className="search-input" 
         type="text"
@@ -25,12 +35,18 @@ const Search = ({ stocks }) => {
         value={query} required>
       </input>
       <div>
-      <select name="exchange" id="exchangeSelect" className="search-exchange">
+      <select 
+        name="exchange" 
+        id="exchangeSelect" 
+        className="search-exchange"
+        value={exchange}
+        onChange={event => handleFormChange(event)}
+      >
         <option value='' disabled={true}>- Select a Stock Exchange -</option>
         <option value="NYSE">NYSE</option>
         <option value="NASDAQ">NASDAQ</option>
       </select>
-      <button className="search-submit">GO</button>
+      <button className="search-submit" onClick={(event) => getSearchResults(event, query, exchange)}>GO</button>
       </div>
     </form>
   )
