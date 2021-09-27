@@ -11,17 +11,22 @@ import chartIcon from '../../images/chart-active.svg';
 import './App.scss';
 
 const App = () => {
-  const [fortuneList, setFortuneList] = useState([])
   const [stockDetail, setStockDetail] = useState(null)
   const [stockDetailError, setStockDetailError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [savedStocks, setSavedStocks] = useState(null)
 
   useEffect(() => {
     startApp()
   }, [])
 
+  useEffect(() => {
+    pushToLocalStorage()
+  }, [savedStocks])
+
   const startApp = () => {
     setIsLoading(true)
+    retrieveFromLocalStorage();
     setTimeout(() => setIsLoading(false), 2500)
   }
 
@@ -38,6 +43,23 @@ const App = () => {
     setStockDetail(null)
   }
 
+  const updateSavedStocks = async (stock) => {
+    const stringifiedStock = JSON.stringify(stock)
+    await setSavedStocks([...savedStocks, stringifiedStock])
+  }
+
+  const pushToLocalStorage = () => {
+    localStorage.setItem("savedStocks", savedStocks)
+  }
+
+  const retrieveFromLocalStorage = async () => {
+    const savedStockData = JSON.parse(localStorage.getItem("savedStocks"))
+    console.log("HEREEEE")
+    if (savedStockData) {
+      await setSavedStocks(savedStockData)
+    } 
+  }  
+
   return (
     <div className="App">
       <header className="App-header">
@@ -48,9 +70,7 @@ const App = () => {
               { isLoading ? <StartLoader /> : 
               <section className="search-page">
                 <p className="search-title">Find Stocks</p>
-                <Search 
-                  stocks={fortuneList} 
-                />
+                <Search />
               </section>  
               }
               </>
@@ -72,6 +92,7 @@ const App = () => {
             render={({ match }) =>
               <>
                 <Stock 
+                  updateSavedStocks={updateSavedStocks}
                   updateStockDetail={updateStockDetail}
                   stockDetail={stockDetail}
                   company={match.params.company}
