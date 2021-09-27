@@ -24,9 +24,9 @@ const App = () => {
     pushToLocalStorage()
   }, [savedStocks])
 
-  const startApp = () => {
+  const startApp = async () => {
     setIsLoading(true)
-    retrieveFromLocalStorage();
+    await retrieveFromLocalStorage();
     setTimeout(() => setIsLoading(false), 2500)
   }
 
@@ -43,21 +43,24 @@ const App = () => {
     setStockDetail(null)
   }
 
-  const updateSavedStocks = async (stock) => {
-    const stringifiedStock = JSON.stringify(stock)
-    await setSavedStocks([...savedStocks, stringifiedStock])
+  const updateSavedStocks = async (event, stock) => {
+    event.preventDefault()
+    console.log(stock)
+    if (!savedStocks) {
+      setSavedStocks([stock])
+    } else {
+      setSavedStocks([...savedStocks, stock])
+    }
   }
 
   const pushToLocalStorage = () => {
-    localStorage.setItem("savedStocks", savedStocks)
+    const stringifiedSavedStocks = JSON.stringify(savedStocks)
+    localStorage.setItem("savedStocks", stringifiedSavedStocks)
   }
 
   const retrieveFromLocalStorage = async () => {
     const savedStockData = JSON.parse(localStorage.getItem("savedStocks"))
-    console.log("HEREEEE")
-    if (savedStockData) {
-      await setSavedStocks(savedStockData)
-    } 
+    setSavedStocks(savedStockData)
   }  
 
   return (
