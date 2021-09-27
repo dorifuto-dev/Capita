@@ -12,7 +12,7 @@ import './App.scss';
 
 const App = () => {
   const [fortuneList, setFortuneList] = useState([])
-  const [stockDetail, setStockDetail] = useState([])
+  const [stockDetail, setStockDetail] = useState(null)
   const [fortuneListError, setFortuneListError] = useState('')
   const [stockDetailError, setStockDetailError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -36,11 +36,11 @@ const App = () => {
     // 15-minute increments for a week.
       .then(data => cleanStockDetailData(data.slice(0, 135)))
       .then(data => setStockDetail(data))
-      .catch(error => console.log(error.message))
+      .catch(error => setStockDetailError(error.message))
   }
 
   const clearStockDetail = () => {
-    setStockDetail([])
+    setStockDetail(null)
   }
 
   return (
