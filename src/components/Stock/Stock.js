@@ -5,7 +5,7 @@ import Loader from 'react-loader-spinner';
 import './Stock.scss';
 const thousands = require('thousands');
 
-const Stock = ({ updateStockDetail, stockDetail, query }) => {
+const Stock = ({ updateStockDetail, stockDetail, ticker }) => {
   const [stockData, setStockData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
@@ -15,7 +15,7 @@ const Stock = ({ updateStockDetail, stockDetail, query }) => {
 
   const mountStock = async () => {
     setIsLoading(true)
-    await updateStockDetail(query)
+    await updateStockDetail(ticker)
     await setStockData(stockDetail)
     setTimeout(() => setIsLoading(false), 2500)
   }
@@ -27,7 +27,7 @@ const Stock = ({ updateStockDetail, stockDetail, query }) => {
           <StockChart 
             stockDetail={stockDetail}
           />
-          <h1 className="stock-title">{query}</h1>
+          <h1 className="stock-title">{ticker}</h1>
           <p className="last-updated">{`Last updated on ${stockDetail[0].dateTime}`}</p>
           <p className="latest-price">{`Latest Price: ${dollarizeNumber(stockDetail[0].close)}`}</p>
           
