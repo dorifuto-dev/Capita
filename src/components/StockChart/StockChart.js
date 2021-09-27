@@ -6,8 +6,6 @@ Chart.defaults.scale.display = false;
 Chart.defaults.maintainAspectRatio = false;
 Chart.defaults.responsive = true;
 
-console.log(Chart.defaults)
-
 Chart.register(...registerables)
 
 const StockChart = ({stockDetail}) => {
@@ -29,7 +27,7 @@ const StockChart = ({stockDetail}) => {
     },
     options: {
       interaction: {
-        mode: 'point'
+        mode: 'nearest'
       },
       plugins: {
         legend: {
@@ -46,8 +44,8 @@ const StockChart = ({stockDetail}) => {
       },
       elements: {
         point: {
-          hitRadius: 5,
-          hoverRadius: 5,
+          hitRadius: 15,
+          hoverRadius: 15,
           radius: 0
         }
       }
