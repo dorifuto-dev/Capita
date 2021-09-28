@@ -1,11 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Chart, registerables } from 'chart.js';
+import PropTypes from 'prop-types';
 import './StockChart.scss';
 
 Chart.defaults.scale.display = false;
 Chart.defaults.maintainAspectRatio = false;
 Chart.defaults.responsive = true;
-
 Chart.register(...registerables)
 
 const StockChart = ({stockDetail}) => {
@@ -64,6 +64,10 @@ const StockChart = ({stockDetail}) => {
       <canvas className="stock-chart" ref={chartContainer} />
     </div>
   )
+}
+
+StockChart.propTypes = {
+  stockDetail: PropTypes.array
 }
 
 export default StockChart;

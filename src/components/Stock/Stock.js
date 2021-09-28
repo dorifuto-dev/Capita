@@ -5,7 +5,7 @@ import Loader from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 import './Stock.scss';
 
-const StockContainer = ({ updateSavedStocks, updateStockDetail, stockDetail, ticker, company }) => {
+const Stock = ({ updateSavedStocks, updateStockDetail, stockDetail, ticker, company }) => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -37,5 +37,13 @@ const StockContainer = ({ updateSavedStocks, updateStockDetail, stockDetail, tic
   )
 }
 
-export default StockContainer;
+Stock.propTypes = {
+  updateSavedStocks: PropTypes.func,
+  updateStockDetail: PropTypes.func,
+  stockDetail: PropTypes.array,
+  ticker: PropTypes.string,
+  company: PropTypes.string
+}
+
+export default Stock;
 

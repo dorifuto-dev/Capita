@@ -81,6 +81,7 @@ const App = () => {
             render={() =>
               <>
                 <p className="page-title">Explore Stocks</p>
+                <p className="coming-soon">Coming Soon...</p>
               </>
             }
           />  
@@ -110,6 +111,7 @@ const App = () => {
           <nav className="navigation">
             <NavLink 
               exact to="/explore"
+              className="nav-link"
               onClick={() => clearStockDetail()}
               activeStyle={{filter: "brightness(0) invert(1)"}}
               >
@@ -121,6 +123,7 @@ const App = () => {
             </NavLink>
             <NavLink 
               exact to="/"
+              className="nav-link"
               onClick={() => clearStockDetail()}
               activeStyle={{filter: "brightness(0) invert(1)"}}
               >
@@ -132,6 +135,7 @@ const App = () => {
             </NavLink>
             <NavLink 
               exact to="/favorites"
+              className="nav-link"
               onClick={() => clearStockDetail()}
               activeStyle={{filter: "brightness(0) invert(1)"}}
               >

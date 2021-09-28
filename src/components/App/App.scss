@@ -35,6 +35,11 @@ h1 {
   bottom: 1em;
 }
 
+.nav-link {
+  height: 30px;
+  width: 30px;
+}
+
 .navbar-img {
   height: 1.5em;
   cursor: pointer;
@@ -61,7 +66,3 @@ h1 {
     text-align: center;
   }
 }
-
-// @media screen and (min-width: 800px) {
-
-// }

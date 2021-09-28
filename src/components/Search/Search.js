@@ -3,7 +3,7 @@ import { fetchSearchSuggestions } from '../../apiCalls';
 import { Link } from 'react-router-dom';
 import './Search.scss';
 
-const Search = ({ stocks }) => {
+const Search = () => {
   const [query, setQuery] = useState('')
   const [exchange, setExchange] = useState('')
   const [searchResults, setSearchResults] = useState(null)
@@ -36,8 +36,8 @@ const Search = ({ stocks }) => {
       return (
         <Link to={`/stock/${result.symbol}&${result.name}`} key={result.symbol} className="link-stock">
           <div className="stock-link">
-            <p className="stock-link-name">{result.name}</p>
-            <p className="stock-link-symbol">{result.symbol}</p>
+            <p className="stock-link-name" key={`${result.symbol}1`}>{result.name}</p>
+            <p className="stock-link-symbol" key={`${result.symbol}2`}>{result.symbol}</p>
           </div>
         </Link>
       )
@@ -63,8 +63,8 @@ const Search = ({ stocks }) => {
           onChange={event => handleFormChange(event)}
         >
           <option value='' disabled={true}>- Select a Stock Exchange -</option>
-          <option value="NYSE">NYSE</option>
-          <option value="NASDAQ">NASDAQ</option>
+          <option className="nyse-option" value="NYSE">NYSE</option>
+          <option className="nasdaq-option" value="NASDAQ">NASDAQ</option>
         </select>
         <button className="search-submit" onClick={(event) => getSearchResults(event, query, exchange)}>GO</button>
         </div>
@@ -77,6 +77,3 @@ const Search = ({ stocks }) => {
 }
 
 export default Search;
-
-/* <Link to={`/stock/${query.toUpperCase()}`}> */
-// { (!searchError && !searchResults) && <section className="daily-tip-container"><p className="daily-tip">Tip of the Day:</p> <p className="tip-text">Invest regularly a little bit at a time.</p></section>}
