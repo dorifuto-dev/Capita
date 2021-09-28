@@ -6,7 +6,7 @@ import './StockContainer.scss';
 
 const StockContainer = ({savedStocks}) => {
   const [favoritedJSX, setFavoritedJSX] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     getFavoritedJSX()
@@ -14,6 +14,7 @@ const StockContainer = ({savedStocks}) => {
 
   const getFavoritedJSX = async () => {
       if (savedStocks) {
+        setIsLoading(true)
         await setFavoritedJSX (
           savedStocks.map(stock => {
             return (
@@ -32,7 +33,6 @@ const StockContainer = ({savedStocks}) => {
        { isLoading ? <Loader className="three-dots" type="ThreeDots" color="#ffffff" height="50" /> :
         <section className="favorited-container">{favoritedJSX}</section> }
     </div>
-   
   )
 }
 
