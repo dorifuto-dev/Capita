@@ -4,7 +4,6 @@
   text-align: center;
   border-radius: 15px;
   border: 0;
-  // border: 1px solid white;
   color: white;
   position: absolute;
   background-color: #282D33;
@@ -50,7 +49,6 @@
   margin-left: auto;
   margin-right: auto;
   cursor: pointer;
- 
 }
 
 .search-submit:hover {
@@ -83,10 +81,6 @@
   left: 0;
   right: 0;
   margin: auto 0px auto 0px;
-}
-
-::-webkit-scrollbar {
-  
 }
 
 .link-stock {
@@ -135,4 +129,23 @@
 .stock-link-symbol {
   left: 82vw;
   margin-right: auto;
+}
+
+@media screen and (min-width: 500px) {
+  .search-input {
+    top: 120px;
+  }
+
+  .search-exchange {
+    top: 150px;
+  }
+
+  .search-submit {
+    top: 166px;
+  }
+
+  .search-results {
+    top: 220px;
+    height: 75vh;
+  }
 }
