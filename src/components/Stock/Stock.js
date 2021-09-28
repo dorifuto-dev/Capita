@@ -2,23 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { dollarizeNumber } from '../../dataCleaning';
 import StockChart from '../StockChart/StockChart';
 import Loader from 'react-loader-spinner';
+import PropTypes from 'prop-types';
 import './Stock.scss';
 
-const Stock = ({ updateSavedStocks, updateStockDetail, stockDetail, ticker, company }) => {
-  const [isLoading, setIsLoading] = useState(false)
+const StockContainer = ({ updateSavedStocks, updateStockDetail, stockDetail, ticker, company }) => {
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     mountStock()
   }, [])
 
   const mountStock = async () => {
-    setIsLoading(true)
     await updateStockDetail(ticker)
     setTimeout(() => setIsLoading(false), 2500)
   }
 
   return (
-    <div>
+    <div className="stock-component-container">
       { (isLoading || !stockDetail) ? <Loader className="three-dots" type="ThreeDots" color="#ffffff" height="50" /> :
         <article className="stock-component">
           <section className="stock-info">
@@ -37,5 +37,5 @@ const Stock = ({ updateSavedStocks, updateStockDetail, stockDetail, ticker, comp
   )
 }
 
-export default Stock;
+export default StockContainer;
 
