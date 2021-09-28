@@ -3,7 +3,7 @@ import { fetchSearchSuggestions } from '../../apiCalls';
 import { Link } from 'react-router-dom';
 import './Search.scss';
 
-const Search = ({ stocks }) => {
+const Search = () => {
   const [query, setQuery] = useState('')
   const [exchange, setExchange] = useState('')
   const [searchResults, setSearchResults] = useState(null)
@@ -77,6 +77,3 @@ const Search = ({ stocks }) => {
 }
 
 export default Search;
-
-/* <Link to={`/stock/${query.toUpperCase()}`}> */
-// { (!searchError && !searchResults) && <section className="daily-tip-container"><p className="daily-tip">Tip of the Day:</p> <p className="tip-text">Invest regularly a little bit at a time.</p></section>}
