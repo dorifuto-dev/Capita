@@ -5,6 +5,7 @@ import { Switch, Route, NavLink } from 'react-router-dom';
 import StartLoader from '../StartLoader/StartLoader';
 import Search from '../Search/Search';
 import Stock from '../Stock/Stock';
+import StockContainer from '../StockContainer/StockContainer';
 import heartIcon from '../../images/heart-active-icon.svg';
 import searchIcon from '../../images/search-active-icon.svg';
 import chartIcon from '../../images/chart-active.svg';
@@ -32,8 +33,6 @@ const App = () => {
 
   const updateStockDetail = async (company) => {
     await fetchStockDetail(company)
-    // Slicing 135 objects from data to show history of a stock by
-    // 15-minute increments for a week.
       .then(data => cleanStockDetailData(data.slice(0, 135)))
       .then(data => setStockDetail(data))
       .catch(error => setStockDetailError(error.message))
@@ -45,7 +44,6 @@ const App = () => {
 
   const updateSavedStocks = async (event, stock) => {
     event.preventDefault()
-    console.log(stock)
     if (!savedStocks) {
       setSavedStocks([stock])
     } else {
@@ -60,7 +58,7 @@ const App = () => {
 
   const retrieveFromLocalStorage = async () => {
     const savedStockData = JSON.parse(localStorage.getItem("savedStocks"))
-    setSavedStocks(savedStockData)
+    await setSavedStocks(savedStockData)
   }  
 
   return (
@@ -72,7 +70,7 @@ const App = () => {
               <>
               { isLoading ? <StartLoader /> : 
               <section className="search-page">
-                <p className="search-title">Find Stocks</p>
+                <p className="page-title">Find Stocks</p>
                 <Search />
               </section>  
               }
@@ -82,12 +80,15 @@ const App = () => {
           <Route exact path={"/explore"}
             render={() =>
               <>
+                <p className="page-title">Explore Stocks</p>
               </>
             }
           />  
           <Route exact path={"/favorites"}
             render={() =>
               <>
+                <p className="page-title">Favorite Stocks</p>
+                <StockContainer savedStocks={savedStocks} />
               </>
             }
           /> 
@@ -100,8 +101,7 @@ const App = () => {
                   stockDetail={stockDetail}
                   company={match.params.company}
                   ticker={match.params.ticker}
-                />
-                
+                />   
               </>
             }
           /> 
