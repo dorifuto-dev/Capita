@@ -36,8 +36,8 @@ const Search = ({ stocks }) => {
       return (
         <Link to={`/stock/${result.symbol}&${result.name}`} key={result.symbol} className="link-stock">
           <div className="stock-link">
-            <p className="stock-link-name">{result.name}</p>
-            <p className="stock-link-symbol">{result.symbol}</p>
+            <p className="stock-link-name" key={`${result.symbol}1`}>{result.name}</p>
+            <p className="stock-link-symbol" key={`${result.symbol}2`}>{result.symbol}</p>
           </div>
         </Link>
       )
@@ -63,8 +63,8 @@ const Search = ({ stocks }) => {
           onChange={event => handleFormChange(event)}
         >
           <option value='' disabled={true}>- Select a Stock Exchange -</option>
-          <option value="NYSE">NYSE</option>
-          <option value="NASDAQ">NASDAQ</option>
+          <option className="nyse-option" value="NYSE">NYSE</option>
+          <option className="nasdaq-option" value="NASDAQ">NASDAQ</option>
         </select>
         <button className="search-submit" onClick={(event) => getSearchResults(event, query, exchange)}>GO</button>
         </div>
