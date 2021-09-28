@@ -3,7 +3,7 @@ import capitaLogo from '../../images/capita-logo.svg'
 import Loader from 'react-loader-spinner';
 import './StartLoader.scss';
 
-const StartLoader = (props) => {
+const StartLoader = () => {
 
   return (
     <article className="loader-container">
