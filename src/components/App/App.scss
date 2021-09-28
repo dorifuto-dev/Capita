@@ -13,7 +13,7 @@
   color: white;
 }
 
-.search-title {
+.page-title {
   position: absolute;
   top: 40px;
   left: 12vw;
@@ -39,3 +39,29 @@ h1 {
   height: 1.5em;
   cursor: pointer;
 }
+
+@media screen and (min-width: 500px) {
+  .navigation {
+    width: 7em;
+    position: absolute;
+    top: 40px;
+    right: 3vw;
+  }
+
+  .navbar-img {
+    height: 1em;
+  }
+
+  .page-title {
+    top: 60px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+}
+
+// @media screen and (min-width: 800px) {
+
+// }
