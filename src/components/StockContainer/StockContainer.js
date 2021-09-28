@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
+import PropTypes from 'prop-types';
 import './StockContainer.scss';
 
 const StockContainer = ({savedStocks}) => {
@@ -33,6 +34,10 @@ const StockContainer = ({savedStocks}) => {
     </div>
    
   )
+}
+
+StockContainer.propTypes = {
+  savedStocks: PropTypes.array
 }
 
 export default StockContainer;
