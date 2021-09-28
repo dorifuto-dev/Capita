@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+## Capita - Solo React Hooks Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Table of Contents
+- [Deployed Site](#deployed-site)
+- [Github Repo](#github-repo)
+- [Demo](#demo)
+- [Project Spec](#project-spec)
+- [App Operation Instructions](#app-operation-instructions)
+- [Setup Instructions](#setup-instructions)
+- [Learning Goals and Reflections](#learning-goals-project-reflection)
+- [Future Additions](#future-additions)
+- [Contributors](#contributors)
+- [Project Managers](#project-managers)
 
-## Available Scripts
+## Deployed Site - 
+https://capita.surge.sh/
 
-In the project directory, you can run:
+## GitHub Repo - 
+https://github.com/ericli1996/Capita/
 
-### `npm start`
+## Demo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+## Project Spec
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[Project Spec](https://frontend.turing.edu/projects/module-3/showcase.html)
 
-### `npm run build`
+## Instructions
+- The purpose of the Capita App is to help users make informed investments by checking real-time data.
+- On page load, a user first sees a loading screen with a logo, which takes the user to a form with two inputs.
+- Currently, a user can enter a search query, and pick between either NASDAQ or NYSE stock exchanges.
+- After filling out both fields and clicking the submit button, a list of search results appears based on the user inputted data.
+- When a user clicks on one of these search result links, the application renders a stock detail card.
+- A user can click or hover over the line graph to view the stock's data points.
+- A user can favorite stocks. These will persist on page refresh.
+- A user can navigate between pages with the navbar, located at the bottom on mobile and top-right on desktop.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Setup Instructions
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To run the application on a local machine:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Clone down repository.
+- `cd` into repository.
+- Run ``` npm install ```
+- Run ``npm start``
+- Webpage will open in separate browser.
 
-### `npm run eject`
+## Technologies Used: 
+ - React
+ - HTML5
+ - CSS
+ - SCSS
+ - Cypress 
+ - Dayjs
+ - React-loader-spinner
+ - Chart.js
+ - Thousands
+ - Router
+ - React PropTypes
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Learning Goals and Project Reflections
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Learning Goals
+- Practice React, and Router
+- Strengthen self-teaching and initiative
+- Keep implementing hooks
+- CSS repetition
+- NPM package learning
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Challenges
+- Styling nav bar with Router
+- Circular structure Error for `JSON.stringify`
+- Cypress testing
+- Error handling
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Wins 
+##### Eric -
+- Very cool to see data displayed in this way
+- Very proud of the dark theme and how the UI looks
 
-## Learn More
+## Future Additions
+- Explore - A user can navigate to "Explore", which has buttons that a user can choose from "Big Movers, Biggest Gainers, Biggest Losers, etc."
+- Delete Favorite - A user can remove a stock from the favorites list
+- Filter Data - Weekly/Monthly - A user can click a slider or other input to change the data displayed in the graph from weekly to monthly.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Contributors
+- Eric Li [Github](github.com/ericli1996)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Project Managers
+- Scott Ertmer
+- Kayla Gordon
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+###### This project was created for [Turing School of Software and Design](https://turing.io/)
+###### 2021/09/20
+**[Back to top](#table-of-contents)**
