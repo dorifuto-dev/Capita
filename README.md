@@ -19,9 +19,22 @@ https://capita.surge.sh/
 https://github.com/ericli1996/Capita/
 
 ## Demo
+Search/Default Display
 
+![Fig A](https://user-images.githubusercontent.com/75854628/135024378-03ccfdf0-9bca-41ce-890a-45ed23a9fd38.png)
 
+Search Results Display
 
+![Fig B](https://user-images.githubusercontent.com/75854628/135024450-744d6455-6f40-4d1c-84e4-3556688f91b1.png)
+e-890a-45ed23a9fd38.png)
+
+Stock Detail Display
+
+![Fig C](https://user-images.githubusercontent.com/75854628/135024486-309042a9-44c5-471e-b688-4f1a6ff3d018.png)
+
+Favorited Stocks Display
+
+![Fig D](https://user-images.githubusercontent.com/75854628/135024522-86d70d60-8521-428d-ad14-bd12994dbd5b.png)
 ## Project Spec
 
 [Project Spec](https://frontend.turing.edu/projects/module-3/showcase.html)
@@ -75,7 +88,6 @@ To run the application on a local machine:
 - Error handling
 
 ### Wins 
-##### Eric -
 - Very cool to see data displayed in this way
 - Very proud of the dark theme and how the UI looks
 
@@ -92,5 +104,5 @@ To run the application on a local machine:
 - Kayla Gordon
 
 ###### This project was created for [Turing School of Software and Design](https://turing.io/)
-###### 2021/09/20
+###### 2021/09/27
 **[Back to top](#table-of-contents)**
