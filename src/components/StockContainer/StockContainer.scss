@@ -1,0 +1,45 @@
+.favorited-link {
+  text-decoration: none;
+}
+
+.favorited-button {
+  width: 100vw;
+  height: 50px;
+  background-color: black;
+  color: white;
+  border-top: 1px solid #282D33;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 0.8em;
+}
+
+.favorited-button:hover {
+  background-color: #282D33;
+}
+
+.favorited-button:last-child {
+  border-bottom: 1px solid #282D33;
+}
+
+.favorited-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 63vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: absolute;
+  top: 100px;
+  left: 0;
+  right: 0;
+  margin: auto 0px auto 0px;
+}
+
+@media screen and (min-width: 500px) {
+  .favorited-container {
+    top: 160px;
+    height: 75vh;
+  }
+}

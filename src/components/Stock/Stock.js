@@ -2,42 +2,40 @@ import React, { useEffect, useState } from 'react';
 import { dollarizeNumber } from '../../dataCleaning';
 import StockChart from '../StockChart/StockChart';
 import Loader from 'react-loader-spinner';
+import PropTypes from 'prop-types';
 import './Stock.scss';
-const thousands = require('thousands');
 
-const Stock = ({ updateStockDetail, stockDetail, ticker }) => {
-  const [stockData, setStockData] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
+const StockContainer = ({ updateSavedStocks, updateStockDetail, stockDetail, ticker, company }) => {
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     mountStock()
   }, [])
 
   const mountStock = async () => {
-    setIsLoading(true)
     await updateStockDetail(ticker)
-    await setStockData(stockDetail)
     setTimeout(() => setIsLoading(false), 2500)
   }
 
   return (
-    <div>
+    <div className="stock-component-container">
       { (isLoading || !stockDetail) ? <Loader className="three-dots" type="ThreeDots" color="#ffffff" height="50" /> :
-        <div>
+        <article className="stock-component">
+          <section className="stock-info">
+            <h1 className="ticker-title">{ticker}</h1>
+            <h1 className="company-title">{company}</h1>
+            <p className="last-updated">{`Last updated on ${stockDetail[0].dateTime}`}</p>
+            <p className="latest-price">{`Latest Price: ${dollarizeNumber(stockDetail[0].close)}`}</p>
+            <button className="favorite-stock" onClick={(event) => updateSavedStocks(event, {name: company, id: Date.now(), symbol: ticker})}>Favorite Stock</button>
+          </section>
           <StockChart 
             stockDetail={stockDetail}
           />
-          <h1 className="stock-title">{ticker}</h1>
-          <p className="last-updated">{`Last updated on ${stockDetail[0].dateTime}`}</p>
-          <p className="latest-price">{`Latest Price: ${dollarizeNumber(stockDetail[0].close)}`}</p>
-          
-        </div>
+        </article>
       }
     </div>
   )
 }
 
-export default Stock;
-
-//MAY CHANGE NAME TO DETAIL, CHART, etc.
+export default StockContainer;
 

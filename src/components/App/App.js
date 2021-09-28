@@ -5,30 +5,34 @@ import { Switch, Route, NavLink } from 'react-router-dom';
 import StartLoader from '../StartLoader/StartLoader';
 import Search from '../Search/Search';
 import Stock from '../Stock/Stock';
+import StockContainer from '../StockContainer/StockContainer';
 import heartIcon from '../../images/heart-active-icon.svg';
 import searchIcon from '../../images/search-active-icon.svg';
 import chartIcon from '../../images/chart-active.svg';
 import './App.scss';
 
 const App = () => {
-  const [fortuneList, setFortuneList] = useState([])
   const [stockDetail, setStockDetail] = useState(null)
   const [stockDetailError, setStockDetailError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [savedStocks, setSavedStocks] = useState(null)
 
   useEffect(() => {
     startApp()
   }, [])
 
-  const startApp = () => {
+  useEffect(() => {
+    pushToLocalStorage()
+  }, [savedStocks])
+
+  const startApp = async () => {
     setIsLoading(true)
+    await retrieveFromLocalStorage();
     setTimeout(() => setIsLoading(false), 2500)
   }
 
   const updateStockDetail = async (company) => {
     await fetchStockDetail(company)
-    // Slicing 135 objects from data to show history of a stock by
-    // 15-minute increments for a week.
       .then(data => cleanStockDetailData(data.slice(0, 135)))
       .then(data => setStockDetail(data))
       .catch(error => setStockDetailError(error.message))
@@ -37,6 +41,25 @@ const App = () => {
   const clearStockDetail = () => {
     setStockDetail(null)
   }
+
+  const updateSavedStocks = async (event, stock) => {
+    event.preventDefault()
+    if (!savedStocks) {
+      setSavedStocks([stock])
+    } else {
+      setSavedStocks([...savedStocks, stock])
+    }
+  }
+
+  const pushToLocalStorage = () => {
+    const stringifiedSavedStocks = JSON.stringify(savedStocks)
+    localStorage.setItem("savedStocks", stringifiedSavedStocks)
+  }
+
+  const retrieveFromLocalStorage = async () => {
+    const savedStockData = JSON.parse(localStorage.getItem("savedStocks"))
+    await setSavedStocks(savedStockData)
+  }  
 
   return (
     <div className="App">
@@ -47,10 +70,8 @@ const App = () => {
               <>
               { isLoading ? <StartLoader /> : 
               <section className="search-page">
-                <p className="search-title">Find Stocks</p>
-                <Search 
-                  stocks={fortuneList} 
-                />
+                <p className="page-title">Find Stocks</p>
+                <Search />
               </section>  
               }
               </>
@@ -59,12 +80,15 @@ const App = () => {
           <Route exact path={"/explore"}
             render={() =>
               <>
+                <p className="page-title">Explore Stocks</p>
               </>
             }
           />  
           <Route exact path={"/favorites"}
             render={() =>
               <>
+                <p className="page-title">Favorite Stocks</p>
+                <StockContainer savedStocks={savedStocks} />
               </>
             }
           /> 
@@ -72,12 +96,12 @@ const App = () => {
             render={({ match }) =>
               <>
                 <Stock 
+                  updateSavedStocks={updateSavedStocks}
                   updateStockDetail={updateStockDetail}
                   stockDetail={stockDetail}
                   company={match.params.company}
                   ticker={match.params.ticker}
-                />
-                
+                />   
               </>
             }
           /> 

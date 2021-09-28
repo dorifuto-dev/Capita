@@ -10,21 +10,36 @@
   margin-left: auto;
 }
 
-.stock-title {
+.stock-info {
   @include positioned-absolute-x-axis-center();
-  top: 1.5em;
-  font-size: 2.5em;
+  top: 30px;
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;;
 }
 
-.last-updated {
-  @include positioned-absolute-x-axis-center();
-  top: 30em;
+.ticker-title {
   font-size: 0.8em;
 }
 
+.company-title {
+  font-size: 1.2em;
+}
+
+.last-updated {
+  font-size: 0.7em;
+}
+
 .latest-price {
-  @include positioned-absolute-x-axis-center();
-  top: 21.5em;
+  margin-top: 0.5em;
   font-size: 1.2em;
   font-weight: 700;
+}
+
+@media screen and (min-width: 500px) {
+  .stock-info {
+    top: 60px;
+  }
 }
