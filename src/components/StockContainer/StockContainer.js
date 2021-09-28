@@ -32,7 +32,6 @@ const StockContainer = ({savedStocks}) => {
        { isLoading ? <Loader className="three-dots" type="ThreeDots" color="#ffffff" height="50" /> :
         <section className="favorited-container">{favoritedJSX}</section> }
     </div>
-   
   )
 }
 
