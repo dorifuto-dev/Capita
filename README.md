@@ -13,10 +13,10 @@
 - [Project Managers](#project-managers)
 
 ## Deployed Site - 
-https://capita.surge.sh/
+[Capita - Netlify](https://capita-ericli1996.netlify.app/)
 
 ## GitHub Repo - 
-https://github.com/ericli1996/Capita/
+[Capita - GitHub](https://github.com/ericli1996/Capita/)
 
 ## Demo
 Search/Default Display
