@@ -5,7 +5,7 @@ import Loader from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 import './Stock.scss';
 
-const Stock = ({ updateSavedStocks, updateStockDetail, stockDetail, ticker, company }) => {
+const Stock = ({ updateSavedStocks, updateStockDetail, stockDetailError, savedStockError, stockDetail, ticker, company }) => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -28,11 +28,13 @@ const Stock = ({ updateSavedStocks, updateStockDetail, stockDetail, ticker, comp
             <p className="latest-price">{`Latest Price: ${dollarizeNumber(stockDetail[0].close)}`}</p>
             <button className="favorite-stock" onClick={(event) => updateSavedStocks(event, {name: company, id: Date.now(), symbol: ticker})}>Favorite Stock</button>
           </section>
+          { savedStockError && <p className="favorite-stock-error">{savedStockError}</p>}
           <StockChart 
             stockDetail={stockDetail}
           />
         </article>
       }
+      { (!stockDetail && stockDetailError) && <p className="stock-detail-error">{stockDetailError}</p>}
     </div>
   )
 }
@@ -40,6 +42,8 @@ const Stock = ({ updateSavedStocks, updateStockDetail, stockDetail, ticker, comp
 Stock.propTypes = {
   updateSavedStocks: PropTypes.func,
   updateStockDetail: PropTypes.func,
+  stockDetailError: PropTypes.string,
+  savedStockError: PropTypes.string,
   stockDetail: PropTypes.array,
   ticker: PropTypes.string,
   company: PropTypes.string

@@ -16,6 +16,7 @@ const App = () => {
   const [stockDetailError, setStockDetailError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [savedStocks, setSavedStocks] = useState(null)
+  const [savedStockError, setSavedStockError] = useState('')
 
   useEffect(() => {
     startApp()
@@ -46,8 +47,11 @@ const App = () => {
     event.preventDefault()
     if (!savedStocks) {
       setSavedStocks([stock])
-    } else {
+    } else if (!savedStocks.find(savedStock => savedStock.name === stock.name)) {
       setSavedStocks([...savedStocks, stock])
+    } else {
+      setSavedStockError("This stock is already favorited.")
+      setTimeout(() => setSavedStockError(""), 3000)
     }
   }
 
@@ -99,6 +103,8 @@ const App = () => {
                 <Stock 
                   updateSavedStocks={updateSavedStocks}
                   updateStockDetail={updateStockDetail}
+                  stockDetailError={stockDetailError}
+                  savedStockError={savedStockError}
                   stockDetail={stockDetail}
                   company={match.params.company}
                   ticker={match.params.ticker}
