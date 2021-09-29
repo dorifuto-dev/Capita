@@ -18,6 +18,12 @@
   color: white;
 }
 
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 .search-exchange {
   border: 0;
   background-color: #282D33;
