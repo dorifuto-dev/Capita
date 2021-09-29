@@ -129,6 +129,10 @@ input, select {
   margin-right: auto;
 }
 
+.no-search-results {
+  width: 80vw;
+}
+
 @media screen and (min-width: 500px) {
   .search-input {
     top: 120px;
