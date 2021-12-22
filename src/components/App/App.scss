@@ -4,7 +4,7 @@
 
 .App-header {
   background-color: black;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,7 +45,7 @@ h1 {
   cursor: pointer;
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 750px) {
   .navigation {
     width: 7em;
     position: absolute;

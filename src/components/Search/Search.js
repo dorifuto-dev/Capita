@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { fetchSearchSuggestions } from '../../apiCalls';
 import { Link } from 'react-router-dom';
 import './Search.scss';
@@ -8,6 +8,18 @@ const Search = () => {
   const [exchange, setExchange] = useState('')
   const [searchResults, setSearchResults] = useState(null)
   const [searchError, setSearchError] = useState('')
+  const [noResultsError, setNoResultsError] = useState('')
+
+  useEffect(() => {
+    if (searchResults && !searchResults.length) {
+      updateNoResults()
+    }
+  }, [searchResults])
+
+  const updateNoResults = async () => {
+    setNoResultsError('No results found. Please try your search again.')
+    setTimeout(() => setNoResultsError(''), 3000)
+  }
 
   const handleFormChange = (event) => {
     event.preventDefault()
@@ -69,9 +81,10 @@ const Search = () => {
         <button className="search-submit" onClick={(event) => getSearchResults(event, query, exchange)}>GO</button>
         </div>
       </form>
-      { (searchError || !searchResults) ? <p className="incomplete-form-error">{searchError}</p>:
+      { (searchError && !searchResults) ? <p className="incomplete-form-error">{searchError}</p>:
         <section className="search-results">{searchResults}</section>
       }
+      { noResultsError && <p className="no-search-results">{noResultsError}</p> }
     </section>
   )
 }

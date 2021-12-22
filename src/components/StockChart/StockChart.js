@@ -11,12 +11,20 @@ const StockChart = ({stockDetail}) => {
 
   const data = canvas => {
     const ctx = canvas.getContext('2d');
+    let lineColor
+
+    if (stockDetail[0].close >= stockDetail[stockDetail.length - 1].close) {
+      lineColor = "#11FF00"
+    } else {
+      lineColor = "#FF0000"
+    }
+
     return {
       labels: stockDetail.map(detail => detail.dateTime).reverse(),
       datasets: [{
         label: "Stock Price",
         data: stockDetail.map(detail => detail.close.toFixed(2)).reverse(),
-        borderColor: "#00ffff",
+        borderColor: lineColor,
         backgroundColor: "#ffffff"
       }],
     };
