@@ -62,14 +62,9 @@ To run the application on a local machine:
 ## Technologies Used: 
  - React
  - HTML5
- - CSS
  - SCSS
  - Cypress 
- - Dayjs
- - React-loader-spinner
- - Chart.js
- - Thousands
- - Router
+ - React Router
  - React PropTypes
 
 ## Learning Goals and Project Reflections
