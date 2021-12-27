@@ -18,6 +18,12 @@
   color: white;
 }
 
+input, select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 .search-exchange {
   border: 0;
   background-color: #282D33;
@@ -56,12 +62,6 @@
 }
 
 .incomplete-form-error {
-  position: absolute;
-  top: 185px;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
   font-size: 0.8em;
 }
 
@@ -121,6 +121,10 @@
 .stock-link-symbol {
   left: 82vw;
   margin-right: auto;
+}
+
+.no-search-results {
+  width: 80vw;
 }
 
 @media screen and (min-width: 500px) {

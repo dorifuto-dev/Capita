@@ -30,8 +30,9 @@ const StockContainer = ({savedStocks}) => {
 
   return (
     <div>
-       { isLoading ? <Loader className="three-dots" type="ThreeDots" color="#ffffff" height="50" /> :
+      { isLoading ? <Loader className="three-dots" type="ThreeDots" color="#ffffff" height="50" /> :
         <section className="favorited-container">{favoritedJSX}</section> }
+      { !savedStocks && <p className="no-saved-stocks">No favorited stocks. Click the magnifying glass to start searching companies.</p>}
     </div>
   )
 }
